@@ -4,10 +4,10 @@ import { useLang } from '../App';
 import { t } from '../lang';
 
 const RECITERS = [
-  { id: 'ar.alafasy',           name: 'Mishary Alafasy',  cdn: 'Alafasy_128kbps' },
-  { id: 'ar.abdurrahmaansudais',name: 'Sudais',           cdn: 'Abdurrahmaan_As-Sudais_192kbps' },
-  { id: 'ar.husary',            name: 'Husary',           cdn: 'Husary_128kbps' },
-  { id: 'ar.minshawi',          name: 'Minshawi',         cdn: 'Minshawy_Murattal_128kbps' },
+  { id: 'ar.alafasy',  name: 'Mishary Alafasy',  surahUrl: n => `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${n}.mp3` },
+  { id: 'shaatree',    name: 'Abu Bakr Ash-Shatri', surahUrl: n => `https://download.quranicaudio.com/quran/abu_bakr_ash-shaatree/${String(n).padStart(3,'0')}.mp3` },
+  { id: 'minshawi',    name: 'Minshawi',         surahUrl: n => `https://download.quranicaudio.com/quran/muhammad_siddeeq_al-minshaawee/${String(n).padStart(3,'0')}.mp3` },
+  { id: 'alafasy2',    name: 'Alafasy (QA)',      surahUrl: n => `https://download.quranicaudio.com/quran/mishaari_raashid_al_3afaasee/${String(n).padStart(3,'0')}.mp3` },
 ];
 
 function globalAyahStart(surahNum) {
@@ -109,7 +109,15 @@ function SurahDetail({ surah, onBack }) {
   const reciter  = RECITERS[reciterIdx];
 
   const stopAudio = () => {
-    if (audioRef.current) { audioRef.current.pause(); audioRef.current.src = ''; audioRef.current = null; }
+    if (audioRef.current) {
+      audioRef.current.onerror = null;
+      audioRef.current.onended = null;
+      audioRef.current.oncanplaythrough = null;
+      audioRef.current.pause();
+      audioRef.current.removeAttribute('src');
+      audioRef.current.load();
+      audioRef.current = null;
+    }
     setPlaying(null);
   };
 
@@ -166,7 +174,7 @@ function SurahDetail({ surah, onBack }) {
 
   const playFull = () => {
     if (playing === 'full') { stopAudio(); return; }
-    const url = `https://cdn.islamic.network/quran/audio-surah/128/${reciter.id}/${surah.number}.mp3`;
+    const url = reciter.surahUrl(surah.number);
     playAudio(url, 'full');
   };
 
