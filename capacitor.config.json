@@ -1,0 +1,8 @@
+{
+  "appId": "com.vird.islamic",
+  "appName": "Vird Islamic App",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

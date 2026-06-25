@@ -1,0 +1,40 @@
+{
+  "name": "Vird — Islamic App",
+  "short_name": "Vird",
+  "description": "Quran, Hadith, Duas, Prayer Times, Tasbeeh, 99 Names, Islamic Quiz & Habit Tracker",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d2818",
+  "theme_color": "#145A32",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "lifestyle", "utilities"],
+  "lang": "en",
+  "dir": "ltr",
+  "screenshots": []
+}

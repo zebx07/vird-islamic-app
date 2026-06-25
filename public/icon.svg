@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d2818"/>
+      <stop offset="100%" stop-color="#145A32"/>
+    </linearGradient>
+  </defs>
+  <!-- Background rounded square -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- Gold decorative ring -->
+  <circle cx="256" cy="210" r="140" fill="none" stroke="#D4AC0D" stroke-width="8" opacity="0.6"/>
+  <!-- Mosque dome top -->
+  <ellipse cx="256" cy="150" rx="48" ry="24" fill="#D4AC0D"/>
+  <rect x="232" y="150" width="48" height="12" fill="#D4AC0D"/>
+  <!-- Main dome -->
+  <path d="M148 260 Q148 170 256 170 Q364 170 364 260 Z" fill="#27ae60"/>
+  <path d="M148 260 Q148 175 256 175 Q364 175 364 260 Z" fill="#2ecc71"/>
+  <!-- Side minarets -->
+  <rect x="130" y="200" width="28" height="70" rx="4" fill="#27ae60"/>
+  <path d="M130 200 Q144 180 158 200 Z" fill="#D4AC0D"/>
+  <rect x="354" y="200" width="28" height="70" rx="4" fill="#27ae60"/>
+  <path d="M354 200 Q368 180 382 200 Z" fill="#D4AC0D"/>
+  <!-- Main building -->
+  <rect x="148" y="258" width="216" height="100" rx="4" fill="#1a8a4a"/>
+  <!-- Door arch -->
+  <path d="M228 358 L228 300 Q256 278 284 300 L284 358 Z" fill="#0d2818"/>
+  <!-- Windows -->
+  <ellipse cx="180" cy="295" rx="16" ry="20" fill="#0d2818"/>
+  <ellipse cx="332" cy="295" rx="16" ry="20" fill="#0d2818"/>
+  <!-- Gold crescent on dome -->
+  <path d="M256 178 Q268 168 268 155 Q262 162 250 160 Q258 155 258 148 Q244 152 244 165 Q244 175 256 178 Z" fill="#D4AC0D"/>
+  <!-- "VIRD" text -->
+  <text x="256" y="410" font-family="Georgia, serif" font-size="52" font-weight="bold" fill="#D4AC0D" text-anchor="middle" letter-spacing="8">VIRD</text>
+  <text x="256" y="440" font-family="Georgia, serif" font-size="18" fill="#7ecfa0" text-anchor="middle" letter-spacing="3">ISLAMIC APP</text>
+</svg>
