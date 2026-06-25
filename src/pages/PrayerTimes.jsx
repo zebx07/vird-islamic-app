@@ -40,21 +40,49 @@ export default function PrayerTimes() {
   function load() {
     setLoading(true); setError(null);
     const today=new Date(), d=today.getDate(), m=today.getMonth()+1, y=today.getFullYear();
+    const dateKey = `${y}-${m}-${d}`;
+    const cacheKey = `vird_prayer_cache_${dateKey}_m${method}`;
+
+    // Check cache first
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey));
+      if (cached) {
+        setTimes(cached.timings); setDate(cached.date); computeNext(cached.timings);
+        if (cached.loc) setLoc(cached.loc);
+        setLoading(false);
+        return;
+      }
+    } catch {}
+
     navigator.geolocation?.getCurrentPosition(
       async ({coords}) => {
         try {
-          const [r, geo] = await Promise.all([
-            fetch(`https://api.aladhan.com/v1/timings/${d}-${m}-${y}?latitude=${coords.latitude}&longitude=${coords.longitude}&method=${method}&adjustment=-1`),
-            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${coords.latitude}&lon=${coords.longitude}&format=json`).catch(()=>null),
-          ]);
+          // Use cached location or fetch from Nominatim
+          const cachedLoc = localStorage.getItem('vird_location');
+          let geoPromise = null;
+          if (!cachedLoc) {
+            geoPromise = fetch(`https://nominatim.openstreetmap.org/reverse?lat=${coords.latitude}&lon=${coords.longitude}&format=json`).catch(()=>null);
+          }
+
+          const r = await fetch(`https://api.aladhan.com/v1/timings/${d}-${m}-${y}?latitude=${coords.latitude}&longitude=${coords.longitude}&method=${method}&adjustment=-1`);
           const j=await r.json();
           if(j.data){
             setTimes(j.data.timings); setDate(j.data.date); computeNext(j.data.timings);
-            if(geo){
-              const g=await geo.json().catch(()=>null);
-              const a=g?.address;
-              setLoc(a?.neighbourhood||a?.suburb||a?.quarter||a?.city_district||a?.city||a?.town||a?.state||'Your Location');
-            } else { const tz=j.data.meta?.timezone||''; setLoc(tz.split('/').pop()?.replace(/_/g,' ')||'Your Location'); }
+            let locName = '';
+            if (cachedLoc) {
+              locName = cachedLoc;
+            } else if (geoPromise) {
+              const geo = await geoPromise;
+              if(geo){
+                const g=await geo.json().catch(()=>null);
+                const a=g?.address;
+                locName = a?.neighbourhood||a?.suburb||a?.quarter||a?.city_district||a?.city||a?.town||a?.state||'Your Location';
+                if (locName && locName !== 'Your Location') localStorage.setItem('vird_location', locName);
+              }
+            }
+            if (!locName) { const tz=j.data.meta?.timezone||''; locName = tz.split('/').pop()?.replace(/_/g,' ')||'Your Location'; }
+            setLoc(locName);
+            try { localStorage.setItem(cacheKey, JSON.stringify({ timings:j.data.timings, date:j.data.date, loc:locName })); } catch {}
           }
         } catch { setError('Failed to load prayer times'); }
         setLoading(false);

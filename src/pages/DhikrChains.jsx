@@ -3,11 +3,11 @@ import { useLang } from '../App';
 import { t } from '../lang';
 
 const SEED = [
-  { id:1, title:'Dua for Gaza', dhikr:'اللَّهُمَّ انْصُرْ إِخْوَانَنَا فِي غَزَّة', english:'Dua for Gaza', desc:'O Allah, grant victory to our brothers and sisters in Gaza. Relieve their suffering and grant them ease.', target:1000000, current:847320, joined:false, myCount:0, type:'community' },
-  { id:2, title:'Darood Ibrahim', dhikr:'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّد', english:'Darood Ibrahim', desc:'The complete Darood we recite in every prayer. The Prophet ﷺ said: Whoever sends blessings upon me once, Allah will send blessings upon him tenfold.', target:500000, current:412000, joined:true, myCount:0, type:'community' },
-  { id:3, title:'Morning Tasbih', dhikr:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ', english:'SubhanAllah wa biHamdihi', desc:'SubhanAllah wa biHamdihi — 100 trees are planted in Jannah for each recitation. Light on the tongue, heavy on the scale.', target:100000, current:73400, joined:false, myCount:0, type:'community' },
-  { id:4, title:'Istighfar Chain', dhikr:'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ', english:'Astaghfirullah', desc:'Seek forgiveness together. The Prophet ﷺ sought forgiveness more than 70 times a day. Open the doors of mercy.', target:500000, current:291000, joined:true, myCount:0, type:'community' },
-  { id:5, title:'La ilaha illAllah', dhikr:'لَا إِلَهَ إِلَّا اللَّهُ', english:'La ilaha illAllah', desc:'The best dhikr. The Prophet ﷺ said: The best thing I and the prophets before me have said is La ilaha illAllah.', target:1000000, current:920100, joined:false, myCount:0, type:'community' },
+  { id:1, title:'Dua for Gaza', dhikr:'اللَّهُمَّ انْصُرْ إِخْوَانَنَا فِي غَزَّة', english:'Dua for Gaza', desc:'O Allah, grant victory to our brothers and sisters in Gaza. Relieve their suffering and grant them ease.', target:1000, current:0, joined:false, myCount:0, type:'community' },
+  { id:2, title:'Darood Ibrahim', dhikr:'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّد', english:'Darood Ibrahim', desc:'The complete Darood we recite in every prayer. The Prophet ﷺ said: Whoever sends blessings upon me once, Allah will send blessings upon him tenfold.', target:1000, current:0, joined:true, myCount:0, type:'community' },
+  { id:3, title:'Morning Tasbih', dhikr:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ', english:'SubhanAllah wa biHamdihi', desc:'SubhanAllah wa biHamdihi — 100 trees are planted in Jannah for each recitation. Light on the tongue, heavy on the scale.', target:100, current:0, joined:false, myCount:0, type:'community' },
+  { id:4, title:'Istighfar Chain', dhikr:'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ', english:'Astaghfirullah', desc:'Seek forgiveness together. The Prophet ﷺ sought forgiveness more than 70 times a day. Open the doors of mercy.', target:1000, current:0, joined:true, myCount:0, type:'community' },
+  { id:5, title:'La ilaha illAllah', dhikr:'لَا إِلَهَ إِلَّا اللَّهُ', english:'La ilaha illAllah', desc:'The best dhikr. The Prophet ﷺ said: The best thing I and the prophets before me have said is La ilaha illAllah.', target:1000, current:0, joined:false, myCount:0, type:'community' },
 ];
 
 const LOAD = () => { try { return JSON.parse(localStorage.getItem('vird_chains') || 'null') || SEED; } catch { return SEED; } };
@@ -28,7 +28,7 @@ export default function DhikrChains() {
 
   const update = fn => setChains(c => fn([...c]));
   const toggle = id => update(c => c.map(x => x.id===id ? {...x, joined:!x.joined} : x));
-  const plus   = id => update(c => c.map(x => x.id===id ? {...x, current:x.current+1, myCount:(x.myCount||0)+1} : x));
+  const plus   = id => update(c => c.map(x => x.id===id ? {...x, myCount:(x.myCount||0)+1} : x));
 
   const addChain = () => {
     if (!newTitle.trim()) return;
@@ -86,9 +86,9 @@ export default function DhikrChains() {
 
       {/* Chain cards */}
       {chains.map((c, i) => {
-        const pct  = Math.min(100, Math.round((c.current/c.target)*100));
         const mt   = myTarget[c.id] || 0;
         const mc   = c.myCount || 0;
+        const pct  = Math.min(100, Math.round((mc/c.target)*100));
         const done = mt > 0 && mc >= mt;
         return (
           <div key={c.id} className="chain-card au" style={{ animationDelay:`${i*0.05}s` }}>
@@ -114,9 +114,9 @@ export default function DhikrChains() {
               </div>
             )}
 
-            {/* Community bar */}
+            {/* Progress bar */}
             <div className="flex-between" style={{ fontSize:12, marginBottom:4 }}>
-              <span style={{ color:'var(--text-muted)', fontWeight:600 }}>🌍 {c.current.toLocaleString()} {t('recitations',lang)}</span>
+              <span style={{ color:'var(--text-muted)', fontWeight:600 }}>{t('myCount',lang)} {mc.toLocaleString()} {t('recitations',lang)}</span>
               <span style={{ fontWeight:800, color:'var(--green-dark)' }}>{pct}%</span>
             </div>
             <div className="chain-bar" style={{ marginBottom:4 }}><div className="chain-fill" style={{ width:`${pct}%` }}/></div>

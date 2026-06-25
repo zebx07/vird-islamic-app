@@ -132,7 +132,7 @@ const TR = {
   wellDone:        { en:'Well Done!',                ar:'أحسنت!',                      ur:'شاباش!',                 tr:'Aferin!'                },
   goodTry:         { en:'Good Try!',                 ar:'محاولة جيدة!',                ur:'اچھی کوشش!',             tr:'İyi Deneme!'            },
   keepLearning:    { en:'Keep Learning!',            ar:'واصل التعلم!',                ur:'سیکھتے رہیں!',           tr:'Öğrenmeye Devam Et!'    },
-  correct:         { en:'% correct',                 ar:'٪ صحيح',                      ur:'٪ درست',                 tr:'% doğru'                },
+  correct:         { en:'correct',                   ar:'صحيح',                        ur:'درست',                   tr:'doğru'                  },
   q10Questions:    { en:'10 Questions',              ar:'١٠ أسئلة',                    ur:'10 سوالات',              tr:'10 Soru'                },
   q15s:           { en:'15s Per Q',                  ar:'١٥ث لكل سؤال',               ur:'15 سیکنڈ فی سوال',       tr:'Soru Başı 15s'          },
   qReview:         { en:'Score Review',              ar:'مراجعة النتيجة',              ur:'نتائج کا جائزہ',         tr:'Skor İncelemesi'        },
@@ -146,6 +146,18 @@ const TR = {
   habits_label:    { en:'habits',                    ar:'عبادات',                      ur:'عبادات',                 tr:'ibadetler'              },
   perfectDay:      { en:'Perfect Day! MashaAllah!',  ar:'يوم مثالي! ماشاء الله!',     ur:'کامل دن! ماشاء اللہ!',   tr:'Mükemmel Gün! MaşaAllah!' },
   perfectDaySub:   { en:'You completed all habits today. May Allah accept.', ar:'أتممت كل عبادات اليوم. تقبل الله.', ur:'آج کی تمام عبادات مکمل۔ اللہ قبول فرمائے۔', tr:'Bugün tüm ibadetleri tamamladınız. Allah kabul etsin.' },
+  habitFajr:       { en:'Fajr Prayer',               ar:'صلاة الفجر',                  ur:'نمازِ فجر',               tr:'Sabah Namazı'           },
+  habitDhuhr:      { en:'Dhuhr Prayer',               ar:'صلاة الظهر',                  ur:'نمازِ ظہر',               tr:'Öğle Namazı'            },
+  habitAsr:        { en:'Asr Prayer',                 ar:'صلاة العصر',                  ur:'نمازِ عصر',               tr:'İkindi Namazı'          },
+  habitMaghrib:    { en:'Maghrib Prayer',             ar:'صلاة المغرب',                 ur:'نمازِ مغرب',              tr:'Akşam Namazı'           },
+  habitIsha:       { en:'Isha Prayer',                ar:'صلاة العشاء',                 ur:'نمازِ عشاء',              tr:'Yatsı Namazı'           },
+  habitQuran:      { en:'Read Quran',                 ar:'قراءة القرآن',                ur:'قرآن پڑھنا',              tr:'Kuran Okumak'           },
+  habitFasting:    { en:'Fasting',                    ar:'الصيام',                      ur:'روزہ',                    tr:'Oruç'                   },
+  habitSadaqah:    { en:'Give Sadaqah',               ar:'الصدقة',                      ur:'صدقہ دینا',               tr:'Sadaka Vermek'          },
+  habitMorning:    { en:'Morning Azkar',              ar:'أذكار الصباح',                ur:'صبح کے اذکار',            tr:'Sabah Zikirleri'        },
+  habitEvening:    { en:'Evening Azkar',              ar:'أذكار المساء',                ur:'شام کے اذکار',            tr:'Akşam Zikirleri'        },
+  habitTahajjud:   { en:'Tahajjud',                   ar:'صلاة التهجد',                 ur:'تہجد',                    tr:'Teheccüd'               },
+  habitSalawat:    { en:'Send Salawat',               ar:'الصلاة على النبي ﷺ',           ur:'درود بھیجنا',             tr:'Salavat Getirmek'       },
 
   // Notifications
   notifsTitle:     { en:'Notifications',             ar:'الإشعارات',                   ur:'نوٹیفیکیشن',             tr:'Bildirimler'            },
@@ -210,6 +222,12 @@ const TR = {
   chainDescPlh:    { en:'Why this chain?',           ar:'لماذا هذه السلسلة؟',           ur:'یہ چین کیوں؟',            tr:'Bu zincir neden?'       },
   goalLabel:       { en:'Goal (recitations)',        ar:'الهدف (عدد مرات الذكر)',       ur:'ہدف (تکرار)',             tr:'Hedef (tekrar)'         },
   noTargetShort:   { en:'No target',                ar:'بلا هدف',                      ur:'ہدف نہیں',                tr:'Hedef yok'              },
+
+  // Error boundary
+  errorBoundaryTitle: { en:'Something went wrong',    ar:'حدث خطأ ما',                  ur:'کچھ غلط ہو گیا',          tr:'Bir hata oluştu'        },
+  errorBoundaryTap:   { en:'Tap to reload',           ar:'انقر لإعادة التحميل',          ur:'ری لوڈ کے لیے ٹیپ کریں', tr:'Yeniden yüklemek için dokunun' },
+  retryLoad:          { en:'Retry',                   ar:'أعد المحاولة',                ur:'دوبارہ کوشش',             tr:'Tekrar Dene'            },
+  illustrativeCounts: { en:'Illustrative counts',     ar:'أعداد توضيحية',               ur:'مثالی اعداد',              tr:'Örnek sayılar'          },
 };
 
 export const T = TR;

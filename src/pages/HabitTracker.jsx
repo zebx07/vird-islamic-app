@@ -3,18 +3,18 @@ import { useLang } from '../App';
 import { t } from '../lang';
 
 const HABITS = [
-  { id:'fajr',    label:'Fajr Prayer',       ar:'صلاة الفجر',       icon:'🌙', pts:10 },
-  { id:'dhuhr',   label:'Dhuhr Prayer',      ar:'صلاة الظهر',       icon:'☀️', pts:10 },
-  { id:'asr',     label:'Asr Prayer',        ar:'صلاة العصر',       icon:'🌤️', pts:10 },
-  { id:'maghrib', label:'Maghrib Prayer',    ar:'صلاة المغرب',      icon:'🌇', pts:10 },
-  { id:'isha',    label:'Isha Prayer',       ar:'صلاة العشاء',      icon:'🌃', pts:10 },
-  { id:'quran',   label:'Read Quran',        ar:'قراءة القرآن',      icon:'📖', pts:15 },
-  { id:'fasting', label:'Fasting',           ar:'الصيام',            icon:'🌙', pts:20 },
-  { id:'sadaqah', label:'Give Sadaqah',      ar:'الصدقة',            icon:'💚', pts:15 },
-  { id:'morning', label:'Morning Azkar',     ar:'أذكار الصباح',      icon:'📿', pts:8  },
-  { id:'evening', label:'Evening Azkar',     ar:'أذكار المساء',      icon:'📿', pts:8  },
-  { id:'tahajjud',label:'Tahajjud',          ar:'صلاة التهجد',       icon:'⭐', pts:25 },
-  { id:'salawat', label:'Send Salawat',      ar:'الصلاة على النبي ﷺ', icon:'💎', pts:10 },
+  { id:'fajr',    labelKey:'habitFajr',    ar:'صلاة الفجر',       icon:'🌙', pts:10 },
+  { id:'dhuhr',   labelKey:'habitDhuhr',   ar:'صلاة الظهر',       icon:'☀️', pts:10 },
+  { id:'asr',     labelKey:'habitAsr',     ar:'صلاة العصر',       icon:'🌤️', pts:10 },
+  { id:'maghrib', labelKey:'habitMaghrib', ar:'صلاة المغرب',      icon:'🌇', pts:10 },
+  { id:'isha',    labelKey:'habitIsha',    ar:'صلاة العشاء',      icon:'🌃', pts:10 },
+  { id:'quran',   labelKey:'habitQuran',   ar:'قراءة القرآن',      icon:'📖', pts:15 },
+  { id:'fasting', labelKey:'habitFasting', ar:'الصيام',            icon:'🌙', pts:20 },
+  { id:'sadaqah', labelKey:'habitSadaqah', ar:'الصدقة',            icon:'💚', pts:15 },
+  { id:'morning', labelKey:'habitMorning', ar:'أذكار الصباح',      icon:'📿', pts:8  },
+  { id:'evening', labelKey:'habitEvening', ar:'أذكار المساء',      icon:'📿', pts:8  },
+  { id:'tahajjud',labelKey:'habitTahajjud',ar:'صلاة التهجد',       icon:'⭐', pts:25 },
+  { id:'salawat', labelKey:'habitSalawat', ar:'الصلاة على النبي ﷺ', icon:'💎', pts:10 },
 ];
 
 const dateKey = d => d.toISOString().split('T')[0];
@@ -38,8 +38,8 @@ export default function HabitTracker() {
   const isToday= selDate === dateKey(new Date());
 
   const streak = (() => {
-    let s=0; const t=new Date();
-    for(let i=0;i<30;i++){ const d=new Date(t); d.setDate(t.getDate()-i); const k=dateKey(d); const n=HABITS.filter(h=>(data[k]||{})[h.id]).length; if(n>=Math.floor(HABITS.length*0.5))s++; else if(i>0)break; }
+    let s=0; const now=new Date();
+    for(let i=0;i<30;i++){ const d=new Date(now); d.setDate(now.getDate()-i); const k=dateKey(d); const n=HABITS.filter(h=>(data[k]||{})[h.id]).length; if(n>=Math.floor(HABITS.length*0.5))s++; else if(i>0)break; }
     return s;
   })();
 
@@ -72,7 +72,7 @@ export default function HabitTracker() {
               cursor:'pointer', textAlign:'center', background:sel?'var(--green-dark)':'var(--surface)',
               color:sel?'#FFF':'var(--text-primary)', transition:'all 0.2s', fontFamily:'inherit'
             }}>
-              <div style={{ fontSize:10, opacity:0.8, fontWeight:600 }}>{d.toLocaleDateString('en',{weekday:'short'})}</div>
+              <div style={{ fontSize:10, opacity:0.8, fontWeight:600 }}>{d.toLocaleDateString(lang==='ar'?'ar':lang==='ur'?'ur':lang==='tr'?'tr':'en',{weekday:'short'})}</div>
               <div style={{ fontSize:16, fontWeight:800, margin:'2px 0' }}>{d.getDate()}</div>
               <div style={{ fontSize:10, color:sel?'rgba(255,255,255,0.7)':'var(--text-muted)' }}>
                 {n>0?`${n}/${HABITS.length}`:'—'}
@@ -87,9 +87,9 @@ export default function HabitTracker() {
         <div className="flex-between" style={{ marginBottom:8 }}>
           <div>
             <div style={{ fontSize:15, fontWeight:700, color:'var(--text-primary)' }}>
-              {isToday ? t('todayProgress', lang) : new Date(selDate+'T12:00:00').toLocaleDateString('en',{weekday:'long',month:'short',day:'numeric'})}
+              {isToday ? t('todayProgress', lang) : new Date(selDate+'T12:00:00').toLocaleDateString(lang==='ar'?'ar':lang==='ur'?'ur':lang==='tr'?'tr':'en',{weekday:'long',month:'short',day:'numeric'})}
             </div>
-            <div style={{ fontSize:13, color:'var(--text-muted)', marginTop:2 }}>{done}/{HABITS.length} habits · {pts}/{maxPts} pts</div>
+            <div style={{ fontSize:13, color:'var(--text-muted)', marginTop:2 }}>{done}/{HABITS.length} {t('habits_label',lang)} · {pts}/{maxPts} {t('pts',lang)}</div>
           </div>
           <div style={{ fontSize:32, fontWeight:900, color:'var(--green-dark)' }}>{pct}%</div>
         </div>
@@ -102,7 +102,7 @@ export default function HabitTracker() {
           <button key={h.id} className={`habit-btn au${isDone?' done':''}`} onClick={() => toggle(h.id)}>
             <span style={{ fontSize:22 }}>{h.icon}</span>
             <div style={{ flex:1 }}>
-              <div className="habit-label">{h.label}</div>
+              <div className="habit-label">{t(h.labelKey,lang)}</div>
               <div className="habit-ar">{h.ar}</div>
             </div>
             <span className="habit-pts">+{h.pts}</span>

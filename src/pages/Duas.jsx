@@ -8,8 +8,12 @@ export default function Duas() {
   const [open,   setOpen]   = useState(0);
   const [search, setSearch] = useState('');
 
+  const getCat = c => typeof c.category === 'string' ? c.category : (c.category[lang] || c.category.en);
+  const getTitle = d => typeof d.title === 'string' ? d.title : (d.title[lang] || d.title.en);
+  const getMeaning = d => d.meaning ? (d.meaning[lang] || d.meaning.en) : d.english;
+
   const filtered = search
-    ? duasData.map(c => ({ ...c, duas: c.duas.filter(d => d.title.toLowerCase().includes(search.toLowerCase()) || d.english.toLowerCase().includes(search.toLowerCase()) || d.arabic.includes(search)) })).filter(c => c.duas.length > 0)
+    ? duasData.map(c => ({ ...c, duas: c.duas.filter(d => getTitle(d).toLowerCase().includes(search.toLowerCase()) || getMeaning(d).toLowerCase().includes(search.toLowerCase()) || d.arabic.includes(search)) })).filter(c => c.duas.length > 0)
     : duasData;
 
   return (
@@ -24,7 +28,7 @@ export default function Duas() {
       <div style={{ background:'var(--green-dark)', borderRadius:'var(--r)', padding:18, textAlign:'center', marginBottom:16, color:'#FFF' }} className="au d1">
         <div style={{ fontFamily:"'Amiri',serif", fontSize:24, marginBottom:4 }}>أَدْعِيَة وَأَذْكَار</div>
         <div style={{ fontSize:13, opacity:0.85 }}>
-          {lang === 'ar' ? 'اذكروا الله كثيراً — يذكركم' : lang === 'ur' ? 'اللہ کو کثرت سے یاد کرو — وہ تمہیں یاد رکھے گا' : 'Remember Allah often — He remembers you'}
+          {lang === 'ar' ? 'اذكروا الله كثيراً — يذكركم' : lang === 'ur' ? 'اللہ کو کثرت سے یاد کرو — وہ تمہیں یاد رکھے گا' : lang === 'tr' ? 'Allah\'ı çokça anın — O sizi ansın' : 'Remember Allah often — He remembers you'}
         </div>
       </div>
 
@@ -39,8 +43,8 @@ export default function Duas() {
             <div className="dua-cat-left">
               <span className="dua-emoji">{cat.emoji}</span>
               <div>
-                <div className="dua-cat-name">{cat.category}</div>
-                <div className="dua-cat-count">{cat.duas.length} {lang==='ar'?'أدعية':lang==='ur'?'دعائیں':'duas'}</div>
+                <div className="dua-cat-name">{getCat(cat)}</div>
+                <div className="dua-cat-count">{cat.duas.length} {lang==='ar'?'أدعية':lang==='ur'?'دعائیں':lang==='tr'?'dua':'duas'}</div>
               </div>
             </div>
             <span className={`dua-chevron${open===ci?' open':''}`}>▼</span>
@@ -48,10 +52,10 @@ export default function Duas() {
 
           {open === ci && cat.duas.map((dua, di) => (
             <div key={di} className="dua-item">
-              <div className="dua-item-title">{dua.title}</div>
+              <div className="dua-item-title">{getTitle(dua)}</div>
               <div className="dua-arabic">{dua.arabic}</div>
               <div className="dua-transliteration">{dua.transliteration}</div>
-              <div className="dua-english">{dua.english}</div>
+              <div className="dua-english">{getMeaning(dua)}</div>
               <div className="dua-source">📖 {dua.source}</div>
             </div>
           ))}

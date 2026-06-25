@@ -4,10 +4,10 @@ import { useLang } from '../App';
 import { t } from '../lang';
 
 const RECITERS = [
-  { id: 'ar.alafasy',           name: 'Mishary Alafasy' },
-  { id: 'ar.abdurrahmaansudais',name: 'Sudais'          },
-  { id: 'ar.husary',            name: 'Husary'          },
-  { id: 'ar.minshawi',          name: 'Minshawi'        },
+  { id: 'ar.alafasy',           name: 'Mishary Alafasy',  cdn: 'Alafasy_128kbps' },
+  { id: 'ar.abdurrahmaansudais',name: 'Sudais',           cdn: 'Abdurrahmaan_As-Sudais_192kbps' },
+  { id: 'ar.husary',            name: 'Husary',           cdn: 'Husary_128kbps' },
+  { id: 'ar.minshawi',          name: 'Minshawi',         cdn: 'Minshawy_Murattal_128kbps' },
 ];
 
 function globalAyahStart(surahNum) {
@@ -118,46 +118,63 @@ function SurahDetail({ surah, onBack }) {
 
   const EDITIONS = { en:'en.pickthall', ur:'ur.jalandhry', tr:'tr.diyanet', ar:'ar.muyassar' };
 
-  useEffect(() => {
+  const loadVerses = () => {
     setLoading(true); setError(null);
     const edition = EDITIONS[lang] || 'en.pickthall';
+    const cacheKey = `vird_quran_${surah.number}_${lang}`;
+
+    // Check cache
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey));
+      if (cached && cached.length > 0) {
+        setVerses(cached);
+        setLoading(false);
+        return;
+      }
+    } catch {}
+
     fetch(`https://api.alquran.cloud/v1/surah/${surah.number}/editions/quran-uthmani,${edition}`)
       .then(r => r.json())
       .then(d => {
         if (d.data?.length >= 2) {
           const ar = d.data[0].ayahs, tr = d.data[1].ayahs;
-          setVerses(ar.map((a, i) => ({ num: a.numberInSurah, ar: a.text, en: tr[i]?.text || '' })));
+          const mapped = ar.map((a, i) => ({ num: a.numberInSurah, ar: a.text, en: tr[i]?.text || '' }));
+          setVerses(mapped);
+          try { localStorage.setItem(cacheKey, JSON.stringify(mapped)); } catch {}
         } else { setError('Failed to load verses'); }
         setLoading(false);
       })
-      .catch(() => { setError('Network error.'); setLoading(false); });
-  }, [surah.number, lang]);
+      .catch(() => { setError(t('networkErr', lang)); setLoading(false); });
+  };
+
+  useEffect(() => { loadVerses(); }, [surah.number, lang]);
+
+  const playAudio = (url, key) => {
+    stopAudio();
+    setError(null);
+    const a = new Audio();
+    a.preload = 'auto';
+    a.onerror = () => { setError(t('networkErr', lang)); setPlaying(null); };
+    a.onended = () => setPlaying(null);
+    a.oncanplaythrough = () => {
+      a.play().catch(() => { setError(t('networkErr', lang)); setPlaying(null); });
+    };
+    a.src = url;
+    audioRef.current = a;
+    setPlaying(key);
+  };
 
   const playFull = () => {
     if (playing === 'full') { stopAudio(); return; }
-    stopAudio();
-    setError(null);
-    // Use Islamic Network CDN for full surah — same reciter IDs, very reliable
     const url = `https://cdn.islamic.network/quran/audio-surah/128/${reciter.id}/${surah.number}.mp3`;
-    const a = new Audio(url);
-    a.onerror = () => { setError(`Audio not available for ${reciter.name} — try another reciter`); setPlaying(null); };
-    a.onended = () => setPlaying(null);
-    a.play().catch(() => { setError('Tap play again'); setPlaying(null); });
-    audioRef.current = a;
-    setPlaying('full');
+    playAudio(url, 'full');
   };
 
   const playAyah = num => {
     if (playing === num) { stopAudio(); return; }
-    stopAudio();
     const globalNum = globalAyahStart(surah.number) + num;
-    const url = `https://cdn.islamic.network/quran/audio/128/${reciter.id}/${globalNum}.mp3`;
-    const a = new Audio(url);
-    a.onerror = () => { setError('Ayah audio failed'); setPlaying(null); };
-    a.onended = () => setPlaying(null);
-    a.play().catch(() => setPlaying(null));
-    audioRef.current = a;
-    setPlaying(num);
+    const url = `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${globalNum}.mp3`;
+    playAudio(url, num);
   };
 
   return (
@@ -195,7 +212,10 @@ function SurahDetail({ surah, onBack }) {
       </div>
 
       {error && (
-        <div style={{ background:'#FFEBEE', border:'1.5px solid #FFCDD2', borderRadius:12, padding:'10px 14px', marginBottom:12, fontSize:13, color:'#C62828', fontWeight:600 }}>⚠️ {error}</div>
+        <div style={{ background:'#FFEBEE', border:'1.5px solid #FFCDD2', borderRadius:12, padding:'10px 14px', marginBottom:12, fontSize:13, color:'#C62828', fontWeight:600, display:'flex', justifyContent:'space-between', alignItems:'center' }}>
+          <span>⚠️ {error}</span>
+          <button onClick={loadVerses} style={{ background:'#C62828', color:'#fff', border:'none', borderRadius:8, padding:'6px 14px', fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:'inherit', marginLeft:10 }}>{t('retryLoad', lang)}</button>
+        </div>
       )}
 
       {surah.number !== 9 && surah.number !== 1 && (

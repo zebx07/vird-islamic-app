@@ -1,4 +1,4 @@
-const CACHE = 'vird-v10';
+const CACHE = 'vird-v12';
 const ASSETS = ['/', '/index.html'];
 
 self.addEventListener('install', e => {

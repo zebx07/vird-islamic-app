@@ -12,12 +12,36 @@ const MOODS = [
 ];
 
 const MOOD_VERSES = {
-  happy:    { ar:'لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ', en:'If you are grateful, I will surely increase you [in favour].', ur:'اگر تم شکر ادا کرو تو میں تمہیں اور زیادہ دوں گا۔', tr:'Eğer şükrederseniz, elbette size artırırım.', ref:'Ibrahim 14:7' },
-  sad:      { ar:'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا', en:'Verily, with hardship comes ease.', ur:'یقیناً ہر تنگی کے ساتھ آسانی ہے۔', tr:'Şüphesiz, güçlükle birlikte kolaylık vardır.', ref:'Ash-Sharh 94:5' },
-  anxious:  { ar:'وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ', en:'Whoever relies upon Allah — He will be sufficient for him.', ur:'جو اللہ پر بھروسہ کرے، وہ اس کے لیے کافی ہے۔', tr:'Kim Allah\'a tevekkül ederse, Allah ona yeter.', ref:'At-Talaq 65:3' },
-  grateful: { ar:'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ', en:'All praise is due to Allah, Lord of all the worlds.', ur:'تمام تعریف اللہ کے لیے ہے جو تمام جہانوں کا رب ہے۔', tr:'Hamd, alemlerin Rabbi Allah\'a aittir.', ref:'Al-Fatihah 1:2' },
-  peaceful: { ar:'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ', en:'Verily, in the remembrance of Allah do hearts find rest.', ur:'یاد رکھو! اللہ کی یاد سے دلوں کو سکون ملتا ہے۔', tr:'Bilin ki, kalpler ancak Allah\'ın zikriyle huzur bulur.', ref:'Ar-Ra\'d 13:28' },
-  lonely:   { ar:'وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ', en:'We are closer to him than his jugular vein.', ur:'ہم اس کی شہ رگ سے بھی زیادہ قریب ہیں۔', tr:'Biz ona şah damarından daha yakınız.', ref:'Qaf 50:16' },
+  happy: [
+    { ar:'لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ', en:'If you are grateful, I will surely increase you [in favour].', ur:'اگر تم شکر ادا کرو تو میں تمہیں اور زیادہ دوں گا۔', tr:'Eğer şükrederseniz, elbette size artırırım.', ref:'Ibrahim 14:7' },
+    { ar:'فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ', en:'So which of the favours of your Lord would you deny?', ur:'تو تم اپنے رب کی کون کون سی نعمت جھٹلاؤ گے؟', tr:'Öyleyse Rabbinizin hangi nimetlerini yalanlarsınız?', ref:'Ar-Rahman 55:13' },
+    { ar:'وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ', en:'And as for the favour of your Lord, proclaim it.', ur:'اور اپنے رب کی نعمت کا تذکرہ کرو۔', tr:'Rabbinin nimetini anlat.', ref:'Ad-Duha 93:11' },
+  ],
+  sad: [
+    { ar:'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا', en:'Verily, with hardship comes ease.', ur:'یقیناً ہر تنگی کے ساتھ آسانی ہے۔', tr:'Şüphesiz, güçlükle birlikte kolaylık vardır.', ref:'Ash-Sharh 94:5' },
+    { ar:'لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا', en:'Do not grieve; indeed Allah is with us.', ur:'غم نہ کرو، بے شک اللہ ہمارے ساتھ ہے۔', tr:'Üzülme, çünkü Allah bizimle beraberdir.', ref:'At-Tawbah 9:40' },
+    { ar:'وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ', en:'And your Lord is going to give you, and you will be satisfied.', ur:'اور عنقریب تمہارا رب تمہیں اتنا دے گا کہ تم راضی ہو جاؤ گے۔', tr:'Rabbin sana verecek ve sen razı olacaksın.', ref:'Ad-Duha 93:5' },
+  ],
+  anxious: [
+    { ar:'وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ', en:'Whoever relies upon Allah — He will be sufficient for him.', ur:'جو اللہ پر بھروسہ کرے، وہ اس کے لیے کافی ہے۔', tr:'Kim Allah\'a tevekkül ederse, Allah ona yeter.', ref:'At-Talaq 65:3' },
+    { ar:'لَا تَخَفْ إِنَّنِي مَعَكُمَا أَسْمَعُ وَأَرَىٰ', en:'Fear not. Indeed, I am with you both; I hear and I see.', ur:'ڈرو نہیں، میں تمہارے ساتھ ہوں، سنتا اور دیکھتا ہوں۔', tr:'Korkmayın, Ben sizinleyim, duyar ve görürüm.', ref:'Taha 20:46' },
+    { ar:'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ', en:'Sufficient for us is Allah, and He is the best Disposer of affairs.', ur:'ہمیں اللہ کافی ہے اور وہ بہترین کارساز ہے۔', tr:'Allah bize yeter, O ne güzel vekildir.', ref:'Al-Imran 3:173' },
+  ],
+  grateful: [
+    { ar:'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ', en:'All praise is due to Allah, Lord of all the worlds.', ur:'تمام تعریف اللہ کے لیے ہے جو تمام جہانوں کا رب ہے۔', tr:'Hamd, alemlerin Rabbi Allah\'a aittir.', ref:'Al-Fatihah 1:2' },
+    { ar:'وَإِن تَعُدُّوا نِعْمَةَ اللَّهِ لَا تُحْصُوهَا', en:'And if you should count the favours of Allah, you could not enumerate them.', ur:'اور اگر تم اللہ کی نعمتیں گنو تو شمار نہیں کر سکتے۔', tr:'Allah\'ın nimetlerini saymaya kalksanız sayamazsınız.', ref:'An-Nahl 16:18' },
+    { ar:'رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ', en:'My Lord, enable me to be grateful for Your favour.', ur:'اے میرے رب! مجھے توفیق دے کہ میں تیری نعمت کا شکر ادا کروں۔', tr:'Rabbim, bana nimetine şükretmeyi ilham et.', ref:'An-Naml 27:19' },
+  ],
+  peaceful: [
+    { ar:'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ', en:'Verily, in the remembrance of Allah do hearts find rest.', ur:'یاد رکھو! اللہ کی یاد سے دلوں کو سکون ملتا ہے۔', tr:'Bilin ki, kalpler ancak Allah\'ın zikriyle huzur bulur.', ref:'Ar-Ra\'d 13:28' },
+    { ar:'هُوَ الَّذِي أَنزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ', en:'It is He who sent down tranquility into the hearts of the believers.', ur:'وہی ہے جس نے مومنوں کے دلوں میں سکینت اتاری۔', tr:'Müminlerin kalplerine huzur indiren O\'dur.', ref:'Al-Fath 48:4' },
+    { ar:'سَلَامٌ قَوْلًا مِّن رَّبٍّ رَّحِيمٍ', en:'Peace — a word from a Merciful Lord.', ur:'سلام ہے — رحیم رب کی طرف سے۔', tr:'Merhametli Rabbin sözü olarak selam.', ref:'Ya-Sin 36:58' },
+  ],
+  lonely: [
+    { ar:'وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ', en:'We are closer to him than his jugular vein.', ur:'ہم اس کی شہ رگ سے بھی زیادہ قریب ہیں۔', tr:'Biz ona şah damarından daha yakınız.', ref:'Qaf 50:16' },
+    { ar:'إِنَّ اللَّهَ مَعَ الصَّابِرِينَ', en:'Indeed, Allah is with the patient.', ur:'بے شک اللہ صبر کرنے والوں کے ساتھ ہے۔', tr:'Şüphesiz Allah sabredenlerle beraberdir.', ref:'Al-Baqarah 2:153' },
+    { ar:'وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ', en:'And He is with you wherever you are.', ur:'اور وہ تمہارے ساتھ ہے تم جہاں بھی ہو۔', tr:'Nerede olursanız olun, O sizinle beraberdir.', ref:'Al-Hadid 57:4' },
+  ],
 };
 
 const PRAYERS = ['Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha'];
@@ -57,6 +81,7 @@ export default function Home({ setPage }) {
   const [countdown, setCd]  = useState('');
   const [hijri,  setHijri]  = useState(null);
   const [mood,       setMood]    = useState(null);
+  const [moodVerse,  setMV]      = useState(null);
   const [pickNum,    setPickNum] = useState('');
   const [pickVerse,  setPV]      = useState(null);
   const [pickLoading,setPL]      = useState(false);
@@ -84,27 +109,58 @@ export default function Home({ setPage }) {
 
   async function loadTimes() {
     const d = new Date(), day = d.getDate(), mon = d.getMonth()+1, yr = d.getFullYear();
+    const dateKey = `${yr}-${mon}-${day}`;
+    const cacheKey = `vird_prayer_cache_${dateKey}`;
+
+    // Check cache first
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey));
+      if (cached) {
+        setTimes(cached.timings); setHijri(cached.hijri); findNext(cached.timings);
+        if (cached.loc) setLoc(cached.loc);
+        return;
+      }
+    } catch {}
+
     try {
       const pos = await new Promise((res,rej) => navigator.geolocation?.getCurrentPosition(res, rej, { timeout:5000 }));
       const { latitude, longitude } = pos.coords;
-      const [r, geo] = await Promise.all([
-        fetch(`https://api.aladhan.com/v1/timings/${day}-${mon}-${yr}?latitude=${latitude}&longitude=${longitude}&method=1&adjustment=-1`),
-        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`).catch(()=>null),
-      ]);
+
+      // Use cached location or fetch from Nominatim
+      let locName = '';
+      const cachedLoc = localStorage.getItem('vird_location');
+      let geoPromise = null;
+      if (!cachedLoc) {
+        geoPromise = fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`).catch(()=>null);
+      }
+
+      const r = await fetch(`https://api.aladhan.com/v1/timings/${day}-${mon}-${yr}?latitude=${latitude}&longitude=${longitude}&method=1&adjustment=-1`);
       const j = await r.json();
       if (j.data) {
         setTimes(j.data.timings); setHijri(j.data.date?.hijri); findNext(j.data.timings);
-        if (geo) {
-          const g = await geo.json().catch(()=>null);
-          const a = g?.address;
-          setLoc(a?.neighbourhood||a?.suburb||a?.quarter||a?.city_district||a?.city||a?.town||a?.state||'');
-        } else { const tz=j.data.meta?.timezone||''; setLoc(tz.split('/').pop()?.replace(/_/g,' ')||''); }
+        if (cachedLoc) {
+          locName = cachedLoc;
+        } else if (geoPromise) {
+          const geo = await geoPromise;
+          if (geo) {
+            const g = await geo.json().catch(()=>null);
+            const a = g?.address;
+            locName = a?.neighbourhood||a?.suburb||a?.quarter||a?.city_district||a?.city||a?.town||a?.state||'';
+            if (locName) localStorage.setItem('vird_location', locName);
+          }
+        }
+        if (!locName) { const tz=j.data.meta?.timezone||''; locName = tz.split('/').pop()?.replace(/_/g,' ')||''; }
+        setLoc(locName);
+        try { localStorage.setItem(cacheKey, JSON.stringify({ timings:j.data.timings, hijri:j.data.date?.hijri, loc:locName })); } catch {}
       }
     } catch {
       try {
         const r = await fetch(`https://api.aladhan.com/v1/timingsByCity/${day}-${mon}-${yr}?city=Mecca&country=SA&method=2`);
         const j = await r.json();
-        if (j.data) { setTimes(j.data.timings); setHijri(j.data.date?.hijri); findNext(j.data.timings); setLoc('Mecca'); }
+        if (j.data) {
+          setTimes(j.data.timings); setHijri(j.data.date?.hijri); findNext(j.data.timings); setLoc('Mecca');
+          try { localStorage.setItem(cacheKey, JSON.stringify({ timings:j.data.timings, hijri:j.data.date?.hijri, loc:'Mecca' })); } catch {}
+        }
       } catch {}
     }
   }
@@ -129,8 +185,14 @@ export default function Home({ setPage }) {
     try {
       const EDITIONS = { en:'en.pickthall', ur:'ur.jalandhry', tr:'tr.diyanet', ar:'ar.muyassar' };
       const edition = EDITIONS[lang] || 'en.pickthall';
-      const r = await fetch(`https://api.alquran.cloud/v1/surah/${n}/editions/quran-uthmani,${edition}`);
-      const j = await r.json();
+      const cacheKey = `vird_pick_${n}_${lang}`;
+      let j;
+      try { j = JSON.parse(localStorage.getItem(cacheKey)); } catch {}
+      if (!j) {
+        const r = await fetch(`https://api.alquran.cloud/v1/surah/${n}/editions/quran-uthmani,${edition}`);
+        j = await r.json();
+        try { localStorage.setItem(cacheKey, JSON.stringify(j)); } catch {}
+      }
       if (j.data?.length >= 2) {
         const ayahs = j.data[0].ayahs;
         const trans = j.data[1].ayahs;
@@ -207,7 +269,10 @@ export default function Home({ setPage }) {
         </div>
         <div style={{ display:'flex', gap:10, justifyContent:'space-between' }}>
           {MOODS.map(m => (
-            <button key={m.key} onClick={() => setMood(mood===m.key ? null : m.key)}
+            <button key={m.key} onClick={() => {
+              if (mood === m.key) { setMood(null); setMV(null); }
+              else { const pool = MOOD_VERSES[m.key]; setMood(m.key); setMV(pool[Math.floor(Math.random()*pool.length)]); }
+            }}
               style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', gap:4, padding:'10px 4px', borderRadius:14,
                 border:`2px solid ${mood===m.key ? m.color : 'var(--border)'}`,
                 background: mood===m.key ? `${m.color}18` : 'var(--surface2)',
@@ -216,16 +281,16 @@ export default function Home({ setPage }) {
             </button>
           ))}
         </div>
-        {mood && MOOD_VERSES[mood] && (
+        {mood && moodVerse && (
           <div style={{ marginTop:14, padding:'12px 14px', background:'linear-gradient(135deg,#0d2818,#145A32)', borderRadius:14, color:'#fff', animation:'fadeUp 0.3s ease' }}>
             <div style={{ fontSize:13, color:'var(--gold)', fontWeight:700, marginBottom:6 }}>{t('forYou', lang)}</div>
             <div style={{ fontFamily:"'Amiri',serif", fontSize:22, direction:'rtl', textAlign:'right', lineHeight:1.8, marginBottom:10 }}>
-              {MOOD_VERSES[mood].ar}
+              {moodVerse.ar}
             </div>
             <div style={{ fontSize:13, opacity:0.9, lineHeight:1.6, marginBottom:8 }}>
-              {MOOD_VERSES[mood][lang] || MOOD_VERSES[mood].en}
+              {moodVerse[lang] || moodVerse.en}
             </div>
-            <div style={{ fontSize:11, opacity:0.6, fontWeight:700 }}>— {MOOD_VERSES[mood].ref}</div>
+            <div style={{ fontSize:11, opacity:0.6, fontWeight:700 }}>— {moodVerse.ref}</div>
           </div>
         )}
       </div>

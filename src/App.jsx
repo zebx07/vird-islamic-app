@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, Component } from 'react';
 import './index.css';
 import Home          from './pages/Home';
 import Quran         from './pages/Quran';
@@ -12,6 +12,27 @@ import IslamicQuiz   from './pages/IslamicQuiz';
 import HabitTracker  from './pages/HabitTracker';
 import Notifications from './pages/Notifications';
 import { t, LANGS, getGreeting } from './lang';
+
+class ErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { hasError: false }; }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) {
+      const lang = localStorage.getItem('vird_lang') || 'en';
+      return (
+        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', height:'100vh', background:'var(--bg,#fff)', padding:32, textAlign:'center' }}>
+          <div style={{ fontSize:48, marginBottom:16 }}>&#x1F54C;</div>
+          <div style={{ fontSize:18, fontWeight:800, color:'var(--text-primary,#222)', marginBottom:8 }}>{t('errorBoundaryTitle', lang)}</div>
+          <button onClick={() => window.location.reload()}
+            style={{ marginTop:12, padding:'12px 28px', borderRadius:12, background:'var(--green-dark,#145A32)', color:'#fff', border:'none', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>
+            {t('errorBoundaryTap', lang)}
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 export const LangCtx = createContext({ lang:'en', setLang:()=>{} });
 export const useLang = () => useContext(LangCtx);
@@ -150,6 +171,7 @@ export default function App() {
   };
 
   return (
+    <ErrorBoundary>
     <LangCtx.Provider value={{ lang, setLang }}>
       <div className="app">
         {/* Top bar */}
@@ -193,5 +215,6 @@ export default function App() {
         {showLang && <LangPicker onClose={() => setShowLang(false)} />}
       </div>
     </LangCtx.Provider>
+    </ErrorBoundary>
   );
 }

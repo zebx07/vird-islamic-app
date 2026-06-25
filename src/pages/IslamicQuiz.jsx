@@ -3,31 +3,31 @@ import { useLang } from '../App';
 import { t } from '../lang';
 
 const POOL = [
-  { q:'How many surahs are in the Quran?', a:0, opts:['114','112','116','120'] },
-  { q:'Which surah is the longest in the Quran?', a:1, opts:['Al-Imran','Al-Baqarah','An-Nisa','Al-Maidah'] },
-  { q:'Which surah is called the heart of the Quran?', a:2, opts:['Al-Fatiha','Al-Ikhlas','Ya-Sin','Al-Kahf'] },
-  { q:'How many times is Bismillah mentioned in the Quran?', a:1, opts:['112','114','113','110'] },
-  { q:'How many pillars does Islam have?', a:0, opts:['5','4','6','7'] },
-  { q:'In which month was the Quran first revealed?', a:2, opts:['Rajab','Shaban','Ramadan','Muharram'] },
-  { q:"What is the first word revealed to Prophet Muhammad ﷺ?", a:0, opts:["Iqra' (Read)",'Bismillah','Qul','Alif'] },
-  { q:'Which angel brought the revelation to Prophet Muhammad ﷺ?', a:1, opts:['Mikail','Jibril','Israfil','Azrael'] },
-  { q:'How many rakaat are in Fajr prayer?', a:0, opts:['2','3','4','5'] },
-  { q:'Which prophet built the Kaaba?', a:2, opts:['Muhammad ﷺ','Ismail','Ibrahim','Adam'] },
-  { q:'How many times must a Muslim pray each day?', a:1, opts:['3','5','4','7'] },
-  { q:'What is the direction Muslims face during prayer?', a:0, opts:['Qibla (Mecca)','Jerusalem','Medina','East'] },
-  { q:'Which surah is recited in every rakat of prayer?', a:2, opts:['Al-Ikhlas','Al-Falaq','Al-Fatiha','Al-Baqarah'] },
-  { q:'What is the meaning of "Islam"?', a:1, opts:['Faith','Submission / Peace','Prayer','Charity'] },
-  { q:'How many months does the Islamic calendar have?', a:0, opts:['12','10','13','11'] },
-  { q:'What does "Zakat" mean?', a:2, opts:['Prayer','Fasting','Purification / Charity','Pilgrimage'] },
-  { q:'What is the Shahada?', a:0, opts:['Declaration of faith','Daily prayer','Fasting','Pilgrimage'] },
-  { q:'In which city was Prophet Muhammad ﷺ born?', a:1, opts:['Medina','Mecca','Taif','Jerusalem'] },
-  { q:'What is the Night of Power called?', a:2, opts:["Laylat Al-Isra'",'Laylat Al-Miraj','Laylat Al-Qadr','Laylat Al-Bara'] },
-  { q:'Which prophet built the ark?', a:0, opts:['Nuh (Noah)','Ibrahim','Musa','Yunus'] },
-  { q:'What is the Islamic month of fasting?', a:1, opts:['Rajab','Ramadan','Shawwal','Muharram'] },
-  { q:'How many verses does Surah Al-Fatiha have?', a:0, opts:['7','6','8','5'] },
-  { q:"What is the last surah of the Quran?", a:2, opts:['Al-Falaq','Al-Ikhlas','An-Nas','Al-Masad'] },
-  { q:'How many days did the creation of the universe take according to Islam?', a:1, opts:['5','6','7','4'] },
-  { q:'What is the Islamic term for voluntary charity?', a:0, opts:['Sadaqah','Zakat','Waqf','Fidya'] },
+  { q:{en:'How many surahs are in the Quran?',ar:'كم عدد سور القرآن؟',ur:'قرآن میں کتنی سورتیں ہیں؟',tr:'Kuran\'da kaç sure vardır?'}, a:0, opts:['114','112','116','120'] },
+  { q:{en:'Which surah is the longest in the Quran?',ar:'ما هي أطول سورة في القرآن؟',ur:'قرآن کی سب سے لمبی سورت کون سی ہے؟',tr:'Kuran\'ın en uzun suresi hangisidir?'}, a:1, opts:['Al-Imran','Al-Baqarah','An-Nisa','Al-Maidah'] },
+  { q:{en:'Which surah is called the heart of the Quran?',ar:'ما السورة التي تسمى قلب القرآن؟',ur:'قرآن کا دل کس سورت کو کہا جاتا ہے؟',tr:'Kuran\'ın kalbi olarak adlandırılan sure hangisidir?'}, a:2, opts:['Al-Fatiha','Al-Ikhlas','Ya-Sin','Al-Kahf'] },
+  { q:{en:'How many times is Bismillah mentioned in the Quran?',ar:'كم مرة ذُكرت البسملة في القرآن؟',ur:'قرآن میں بسم اللہ کتنی مرتبہ آئی ہے؟',tr:'Kuran\'da Besmele kaç kez geçer?'}, a:1, opts:['112','114','113','110'] },
+  { q:{en:'How many pillars does Islam have?',ar:'كم عدد أركان الإسلام؟',ur:'اسلام کے کتنے ارکان ہیں؟',tr:'İslam\'ın kaç şartı vardır?'}, a:0, opts:['5','4','6','7'] },
+  { q:{en:'In which month was the Quran first revealed?',ar:'في أي شهر نزل القرآن أول مرة؟',ur:'قرآن کس مہینے میں نازل ہوا؟',tr:'Kuran ilk hangi ayda indirildi?'}, a:2, opts:{en:['Rajab','Shaban','Ramadan','Muharram'],ar:['رجب','شعبان','رمضان','محرم'],ur:['رجب','شعبان','رمضان','محرم'],tr:['Recep','Şaban','Ramazan','Muharrem']} },
+  { q:{en:"What is the first word revealed to Prophet Muhammad ﷺ?",ar:'ما أول كلمة نزلت على النبي محمد ﷺ؟',ur:'نبی ﷺ پر سب سے پہلا لفظ کون سا نازل ہوا؟',tr:'Hz. Muhammed ﷺ\'e indirilen ilk kelime nedir?'}, a:0, opts:{en:["Iqra' (Read)",'Bismillah','Qul','Alif'],ar:['اقرأ','بسم الله','قل','ألف'],ur:['اقرأ (پڑھو)','بسم اللہ','قل','الف'],tr:['İkra (Oku)','Besmele','Kul','Elif']} },
+  { q:{en:'Which angel brought the revelation to Prophet Muhammad ﷺ?',ar:'أي ملك نزل بالوحي على النبي ﷺ؟',ur:'کس فرشتے نے نبی ﷺ پر وحی لائی؟',tr:'Vahyi Hz. Muhammed ﷺ\'e hangi melek getirdi?'}, a:1, opts:{en:['Mikail','Jibril','Israfil','Azrael'],ar:['ميكائيل','جبريل','إسرافيل','عزرائيل'],ur:['میکائیل','جبریل','اسرافیل','عزرائیل'],tr:['Mikail','Cebrail','İsrafil','Azrail']} },
+  { q:{en:'How many rakaat are in Fajr prayer?',ar:'كم عدد ركعات صلاة الفجر؟',ur:'نمازِ فجر میں کتنی رکعات ہیں؟',tr:'Sabah namazı kaç rekattır?'}, a:0, opts:['2','3','4','5'] },
+  { q:{en:'Which prophet built the Kaaba?',ar:'أي نبي بنى الكعبة؟',ur:'کعبہ کس نبی نے تعمیر کیا؟',tr:'Kabe\'yi hangi peygamber inşa etti?'}, a:2, opts:{en:['Muhammad ﷺ','Ismail','Ibrahim','Adam'],ar:['محمد ﷺ','إسماعيل','إبراهيم','آدم'],ur:['محمد ﷺ','اسماعیل','ابراہیم','آدم'],tr:['Hz. Muhammed ﷺ','Hz. İsmail','Hz. İbrahim','Hz. Adem']} },
+  { q:{en:'How many times must a Muslim pray each day?',ar:'كم مرة يجب على المسلم أن يصلي يومياً؟',ur:'مسلمان کو دن میں کتنی بار نماز پڑھنی چاہیے؟',tr:'Bir Müslüman günde kaç vakit namaz kılmalıdır?'}, a:1, opts:['3','5','4','7'] },
+  { q:{en:'What is the direction Muslims face during prayer?',ar:'ما الاتجاه الذي يستقبله المسلمون في الصلاة؟',ur:'مسلمان نماز میں کس طرف رخ کرتے ہیں؟',tr:'Müslümanlar namazda hangi yöne döner?'}, a:0, opts:{en:['Qibla (Mecca)','Jerusalem','Medina','East'],ar:['القبلة (مكة)','القدس','المدينة','الشرق'],ur:['قبلہ (مکہ)','یروشلم','مدینہ','مشرق'],tr:['Kıble (Mekke)','Kudüs','Medine','Doğu']} },
+  { q:{en:'Which surah is recited in every rakat of prayer?',ar:'ما السورة التي تُقرأ في كل ركعة؟',ur:'ہر رکعت میں کون سی سورت پڑھی جاتی ہے؟',tr:'Namazın her rekatında hangi sure okunur?'}, a:2, opts:['Al-Ikhlas','Al-Falaq','Al-Fatiha','Al-Baqarah'] },
+  { q:{en:'What is the meaning of "Islam"?',ar:'ما معنى كلمة "الإسلام"؟',ur:'"اسلام" کا مطلب کیا ہے؟',tr:'"İslam" ne anlama gelir?'}, a:1, opts:{en:['Faith','Submission / Peace','Prayer','Charity'],ar:['إيمان','استسلام / سلام','صلاة','صدقة'],ur:['ایمان','اطاعت / سلامتی','نماز','صدقہ'],tr:['İman','Teslimiyet / Barış','Namaz','Sadaka']} },
+  { q:{en:'How many months does the Islamic calendar have?',ar:'كم عدد أشهر التقويم الإسلامي؟',ur:'اسلامی کیلنڈر میں کتنے مہینے ہیں؟',tr:'İslami takvimde kaç ay vardır?'}, a:0, opts:['12','10','13','11'] },
+  { q:{en:'What does "Zakat" mean?',ar:'ما معنى "الزكاة"؟',ur:'"زکوٰة" کا مطلب کیا ہے؟',tr:'"Zekat" ne demektir?'}, a:2, opts:{en:['Prayer','Fasting','Purification / Charity','Pilgrimage'],ar:['صلاة','صيام','تطهير / صدقة','حج'],ur:['نماز','روزہ','تزکیہ / صدقہ','حج'],tr:['Namaz','Oruç','Arınma / Sadaka','Hac']} },
+  { q:{en:'What is the Shahada?',ar:'ما هي الشهادة؟',ur:'شہادت کیا ہے؟',tr:'Şehadet nedir?'}, a:0, opts:{en:['Declaration of faith','Daily prayer','Fasting','Pilgrimage'],ar:['إعلان الإيمان','الصلاة اليومية','الصيام','الحج'],ur:['اعلانِ ایمان','روزانہ نماز','روزہ','حج'],tr:['İman ikrarı','Günlük namaz','Oruç','Hac']} },
+  { q:{en:'In which city was Prophet Muhammad ﷺ born?',ar:'في أي مدينة وُلد النبي محمد ﷺ؟',ur:'نبی ﷺ کس شہر میں پیدا ہوئے؟',tr:'Hz. Muhammed ﷺ hangi şehirde doğdu?'}, a:1, opts:{en:['Medina','Mecca','Taif','Jerusalem'],ar:['المدينة','مكة','الطائف','القدس'],ur:['مدینہ','مکہ','طائف','یروشلم'],tr:['Medine','Mekke','Taif','Kudüs']} },
+  { q:{en:'What is the Night of Power called?',ar:'ما اسم ليلة القدر؟',ur:'شبِ قدر کو کیا کہتے ہیں؟',tr:'Kadir Gecesi\'nin adı nedir?'}, a:2, opts:["Laylat Al-Isra'",'Laylat Al-Miraj','Laylat Al-Qadr','Laylat Al-Bara'] },
+  { q:{en:'Which prophet built the ark?',ar:'أي نبي بنى السفينة؟',ur:'کس نبی نے کشتی بنائی؟',tr:'Gemiyi hangi peygamber yaptı?'}, a:0, opts:{en:['Nuh (Noah)','Ibrahim','Musa','Yunus'],ar:['نوح','إبراهيم','موسى','يونس'],ur:['نوح','ابراہیم','موسیٰ','یونس'],tr:['Hz. Nuh','Hz. İbrahim','Hz. Musa','Hz. Yunus']} },
+  { q:{en:'What is the Islamic month of fasting?',ar:'ما شهر الصيام في الإسلام؟',ur:'اسلام میں روزوں کا مہینہ کون سا ہے؟',tr:'İslam\'da oruç ayı hangisidir?'}, a:1, opts:{en:['Rajab','Ramadan','Shawwal','Muharram'],ar:['رجب','رمضان','شوال','محرم'],ur:['رجب','رمضان','شوال','محرم'],tr:['Recep','Ramazan','Şevval','Muharrem']} },
+  { q:{en:'How many verses does Surah Al-Fatiha have?',ar:'كم عدد آيات سورة الفاتحة؟',ur:'سورة الفاتحہ میں کتنی آیات ہیں؟',tr:'Fatiha Suresi kaç ayettir?'}, a:0, opts:['7','6','8','5'] },
+  { q:{en:"What is the last surah of the Quran?",ar:'ما آخر سورة في القرآن؟',ur:'قرآن کی آخری سورت کون سی ہے؟',tr:'Kuran\'ın son suresi hangisidir?'}, a:2, opts:['Al-Falaq','Al-Ikhlas','An-Nas','Al-Masad'] },
+  { q:{en:'How many days did the creation of the universe take according to Islam?',ar:'كم يوماً استغرق خلق الكون في الإسلام؟',ur:'اسلام کے مطابق کائنات کتنے دنوں میں بنائی گئی؟',tr:'İslam\'a göre evrenin yaratılışı kaç gün sürdü?'}, a:1, opts:['5','6','7','4'] },
+  { q:{en:'What is the Islamic term for voluntary charity?',ar:'ما المصطلح الإسلامي للصدقة التطوعية؟',ur:'رضاکارانہ صدقے کی اسلامی اصطلاح کیا ہے؟',tr:'Gönüllü sadakanın İslami terimi nedir?'}, a:0, opts:{en:['Sadaqah','Zakat','Waqf','Fidya'],ar:['صدقة','زكاة','وقف','فدية'],ur:['صدقہ','زکوٰة','وقف','فدیہ'],tr:['Sadaka','Zekat','Vakıf','Fidye']} },
 ];
 
 const shuffle = a => [...a].sort(() => Math.random()-0.5);
@@ -44,10 +44,13 @@ export default function IslamicQuiz() {
   const [timer,     setTimer]   = useState(TIME);
   const intervalRef = useRef(null);
 
+  const getOpts = (opts) => Array.isArray(opts) ? opts : (opts[lang] || opts.en);
+  const getQ = (q) => typeof q.q === 'string' ? q.q : (q.q[lang] || q.q.en);
+
   const start = () => {
     const qs = shuffle(POOL).slice(0,10).map(q => ({
       ...q,
-      opts: shuffle(q.opts.map((o,i) => ({ text:o, orig:i }))),
+      shuffled: shuffle(getOpts(q.opts).map((o,i) => ({ text:o, orig:i }))),
     }));
     setQs(qs); setQi(0); setSel(null); setAns([]); setTimer(TIME); setScreen('play');
   };
@@ -57,9 +60,9 @@ export default function IslamicQuiz() {
     clearInterval(intervalRef.current);
     setTimer(TIME);
     intervalRef.current = setInterval(() => {
-      setTimer(t => {
-        if (t <= 1) { clearInterval(intervalRef.current); doAnswer(null); return TIME; }
-        return t - 1;
+      setTimer(prev => {
+        if (prev <= 1) { clearInterval(intervalRef.current); doAnswer(null); return TIME; }
+        return prev - 1;
       });
     }, 1000);
     return () => clearInterval(intervalRef.current);
@@ -68,12 +71,12 @@ export default function IslamicQuiz() {
   function doAnswer(chosenOpt) {
     clearInterval(intervalRef.current);
     const q = questions[qi];
-    const correctText = q.opts.find(o => o.orig === q.a)?.text;
+    const correctText = q.shuffled.find(o => o.orig === q.a)?.text;
     const chosenText  = chosenOpt?.text ?? null;
     setSel(chosenText);
     const isCorrect = chosenText === correctText;
     setTimeout(() => {
-      setAns(a => [...a, { question:q.q, chosen:chosenText, correct:correctText, isCorrect }]);
+      setAns(a => [...a, { question:getQ(q), chosen:chosenText, correct:correctText, isCorrect }]);
       setSel(null);
       if (qi + 1 < questions.length) setQi(qi+1);
       else setScreen('review');
@@ -110,7 +113,7 @@ export default function IslamicQuiz() {
           {score>=8?t('excellent',lang):score>=6?t('wellDone',lang):score>=4?t('goodTry',lang):t('keepLearning',lang)}
         </h2>
         <div style={{ fontSize:38, fontWeight:900, color:'var(--green-dark)' }}>{score}/10</div>
-        <div style={{ fontSize:13, color:'var(--text-muted)', marginTop:4 }}>{score*10}% correct</div>
+        <div style={{ fontSize:13, color:'var(--text-muted)', marginTop:4 }}>{score*10}% {t('correct',lang)}</div>
       </div>
 
       <div className="progress-bar" style={{ margin:'0 0 18px' }}>
@@ -161,12 +164,12 @@ export default function IslamicQuiz() {
       </div>
 
       <div className="card card-p au" style={{ marginBottom:18, minHeight:80, display:'flex', alignItems:'center' }}>
-        <p style={{ fontSize:16, fontWeight:700, color:'var(--text-primary)', lineHeight:1.55, margin:0 }}>{q.q}</p>
+        <p style={{ fontSize:16, fontWeight:700, color:'var(--text-primary)', lineHeight:1.55, margin:0 }}>{getQ(q)}</p>
       </div>
 
       <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
-        {q.opts.map((opt, i) => {
-          const correctText = q.opts.find(o => o.orig === q.a)?.text;
+        {q.shuffled.map((opt, i) => {
+          const correctText = q.shuffled.find(o => o.orig === q.a)?.text;
           let style = { background:'var(--surface)', border:'2px solid var(--border)', color:'var(--text-primary)' };
           if (sel !== null) {
             if (opt.text === correctText)
